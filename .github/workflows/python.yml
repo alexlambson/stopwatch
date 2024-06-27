@@ -1,0 +1,81 @@
+name: python
+on:
+  workflow_call:
+    inputs:
+      docs:
+        description: Enables/disables docs generation with sphinx
+        required: false
+        type: boolean
+        default: false
+jobs:
+  black:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4.1.7
+      - uses: piotrpawlaczek/python-blacken@v24.4.2
+  install:
+    strategy:
+      matrix:
+        python-version: [ "3.8.10", "3.9", "3.10", "3.11", "3.12" ]
+        include:
+          - python-version: "3.12"
+            upload: true
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4.1.7
+      - uses: actions/setup-python@v5.1.0
+        with:
+          python-version: ${{ matrix.python-version }}
+      - run: python -m pip install build twine --user
+      - run: python -m build --sdist --wheel --outdir dist/
+      - run: twine check dist/*
+      - run: python3 -m pip install .
+      - uses: actions/upload-artifact@v4.3.3
+        if: matrix.upload
+        with:
+          name: build
+          path: dist/*
+  docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4.1.7
+        if: inputs.docs
+      - uses: actions/setup-python@v5.1.0
+        with:
+          python-version: "3.12"
+        if: inputs.docs
+      - run: |
+          python -m venv venv
+          source ./venv/bin/activate
+          python -m pip install sphinx
+          python -m pip install -r docs/requirements.txt || true
+          sphinx-build -b html docs/ docs/_build
+        if: inputs.docs
+      - uses: actions/upload-artifact@v4.3.3
+        if: inputs.docs
+        with:
+          name: docs
+          path: docs/_build/
+  pytest:
+    strategy:
+      matrix:
+        python-version: [ "3.8.10", "3.9", "3.10", "3.11", "3.12" ]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4.1.7
+      - uses: actions/setup-python@v5.1.0
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: 'pip'
+      - name: install pytest-cov
+        run: pip install pytest pytest-cov
+      - name: install dependencies
+        run: pip install -e .[test]
+      - name: run pytest --cov
+        run: |
+          pytest --cov=./ --cov-report=html
+      - uses: actions/upload-artifact@v4.3.3
+        with:
+          name: Coverage report HTML
+          if-no-files-found: error
+          path: htmlcov
