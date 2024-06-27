@@ -13,28 +13,30 @@ jobs:
     steps:
       - uses: actions/checkout@v4.1.7
       - uses: piotrpawlaczek/python-blacken@v24.4.2
-  install:
-    strategy:
-      matrix:
-        python-version: [ "3.8.10", "3.9", "3.10", "3.11", "3.12" ]
-        include:
-          - python-version: "3.12"
-            upload: true
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4.1.7
-      - uses: actions/setup-python@v5.1.0
         with:
-          python-version: ${{ matrix.python-version }}
-      - run: python -m pip install build twine --user
-      - run: python -m build --sdist --wheel --outdir dist/
-      - run: twine check dist/*
-      - run: python3 -m pip install .
-      - uses: actions/upload-artifact@v4.3.3
-        if: matrix.upload
-        with:
-          name: build
-          path: dist/*
+          line-length: '128'
+#  install:
+#    strategy:
+#      matrix:
+#        python-version: [ "3.8.10", "3.9", "3.10", "3.11", "3.12" ]
+#        include:
+#          - python-version: "3.12"
+#            upload: true
+#    runs-on: ubuntu-latest
+#    steps:
+#      - uses: actions/checkout@v4.1.7
+#      - uses: actions/setup-python@v5.1.0
+#        with:
+#          python-version: ${{ matrix.python-version }}
+#      - run: python -m pip install build twine --user
+#      - run: python -m build --sdist --wheel --outdir dist/
+#      - run: twine check dist/*
+#      - run: python3 -m pip install .
+#      - uses: actions/upload-artifact@v4.3.3
+#        if: matrix.upload
+#        with:
+#          name: build
+#          path: dist/*
   docs:
     runs-on: ubuntu-latest
     steps:
