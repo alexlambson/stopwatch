@@ -72,7 +72,7 @@ jobs:
       - name: install pytest-cov
         run: pip install pytest pytest-cov
       - name: install dependencies
-        run: pip install -e .[test]
+        run: pip install -r requirements-dev.txt
       - name: run pytest --cov
         run: |
           pytest --cov=./ --cov-report=html
