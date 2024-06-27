@@ -7,5 +7,5 @@ on:
   pull_request:
 
 jobs:
-  run-ci:
-    uses: ./python.yml
+  ci:
+    uses: ./.github/workflows/python.yml
