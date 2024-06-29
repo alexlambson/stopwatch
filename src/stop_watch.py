@@ -17,20 +17,33 @@ class Lap(t.TypedDict):
     """A named lap for more granular timing."""
 
     lap_name: str
+    """str: Any string that means something to you. e.g. "my_function_begin"."""
     lap_time_stamp: float
+    """float: The time that the named lap was called."""
 
 
 class StopWatchDict(t.TypedDict):
-    start_time: t.Optional[float]
+    """A typed dictionary for logging.
+
+    Will be returned by :func:`stop_watch.StopWatch.as_dict` and gets serialized when calling
+    ``ujson.dumps()`` on a :class:`~stop_watch.StopWatch`.
+    """
+
+    start_time: float
+    """float: The time that the stopwatch was created."""
     stop_time: t.Optional[float]
+    """t.Optional[float]: The time that the stopwatch was stopped with :func:`stop_watch.StopWatch.stop`"""
     laps: t.List[Lap]
+    """t.List[Lap]: The list of named laps in the order that they were created."""
     total_time: t.Optional[float]
+    """t.Optional[float]: The total time between creating the stopwatch and calling :func:`stop_watch.StopWatch.stop`"""
 
 
 class StopWatch:
     """A class to time your code with.
 
-    Supports "laps" to give more granular timing:
+    Supports "laps" to give more granular timing. A lap is just a named point in time that means something to you.
+    Laps are created by calling :func:`stop_watch.StopWatch.lap`.
     """
 
     _start_time: t.Optional[float] = None
@@ -40,13 +53,14 @@ class StopWatch:
     _laps: t.List[Lap]
 
     def __init__(self, *, start_time: t.Optional[float] = None, time_func: TimeCompatibleCallable = time.time):
-        """Initialize a stopwatch timer.
+        """Initialize a stopwatch timer and start the timer.
 
         :param start_time:
             If set, this will be the time that the timer starts at instead of ``.time()``.
         :param time_func:
             Dependency injection. Must be a function that returns a float.
             Defaults to the Python ``time.time`` function.
+            Is only called if ``start_time`` is ``None``.
         """
         self._time = time_func
 
@@ -115,6 +129,14 @@ class StopWatch:
 
     def lap(self, name: str) -> Lap:
         """Record the current time as a named lap.
+
+        Laps **can** be called after the timer has already been stopped.
+        This behavior was intentional to help diagnose race conditions even if you've stopped the timer.
+        Laps are **not** included in :attr:`~stop_watch.StopWatch.total` and exist purely for tracing your code.
+
+        I did consider the idea of not allowing laps on stopped timers, but that'd either require an error,
+        failing silently, or returning a bool that would need to be checked. All of these would be annoying to deal
+        with for a simple timer.
 
         :param name:
             Any string that will be useful to you and your logging.
