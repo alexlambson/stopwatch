@@ -81,4 +81,4 @@ jobs:
         with:
           name: ${{ env.RUN_UNIQUE_ID }}_coverage_${{ matrix.step }}
           if-no-files-found: error
-          path: coverage-reports
+          path: htmlcov
