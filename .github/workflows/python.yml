@@ -61,7 +61,7 @@ jobs:
   pytest:
     strategy:
       matrix:
-        python-version: [ "3.8", "3.12" ]
+        python-version: [ "3.8", "3.9", "3.10", "3.11", "3.12" ]
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v4.1.7
@@ -79,7 +79,7 @@ jobs:
           pytest --cov=./ --cov-report=html
       - uses: actions/upload-artifact@v4.3.3
         with:
-          name: coverage_${{ matrix.step }}
+          name: coverage_${{ matrix.python-version }}
           if-no-files-found: error
           path: htmlcov
           overwrite: true
