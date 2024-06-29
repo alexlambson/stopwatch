@@ -68,10 +68,11 @@ jobs:
       - uses: actions/setup-python@v5.1.0
         with:
           python-version: ${{ matrix.python-version }}
-          cache: 'pip'
-      - name: install dependencies
+      - name: upgrade pip
         run: |
           python -m pip install --upgrade pip
+      - name: run pip
+        run: |
           pip install -r requirements-dev.txt
       - name: run pytest --cov
         run: |
