@@ -4,6 +4,11 @@ A helper to time your code in a granular way without a ton of bloat.
 
 Useful for people who don't have a metrics service, but do have some form of logging.
 
+Github project: https://github.com/alexlambson/stopwatch/
+
+The main class that a user will be interested in is {py:class}`src.stop_watch.StopWatch`
+
+
 # Usage
 
 Consider the manual way of timing:
