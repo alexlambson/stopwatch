@@ -66,6 +66,12 @@ jobs:
         with:
           name: github-pages
           path: github-pages.tar.gz
+      - name: Deploy Pages
+        uses: peaceiris/actions-gh-pages@v4
+        if: github.ref == 'refs/heads/main'
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs/_build/
   pytest:
     if: inputs.tests
     strategy:
@@ -91,10 +97,3 @@ jobs:
         if: inputs.tests
         run: |
           pytest --cov=./ --cov-report=html
-      - uses: actions/upload-artifact@v4.3.3
-        if: inputs.tests
-        with:
-          name: coverage_${{ matrix.python-version }}
-          if-no-files-found: error
-          path: htmlcov
-          overwrite: true
