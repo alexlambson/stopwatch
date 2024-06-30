@@ -1,0 +1,14 @@
+name: Doc Upload
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+
+jobs:
+  publish-docs:
+      uses: ./.github/workflows/python.yml
+      with:
+        docs: true

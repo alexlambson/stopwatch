@@ -1,0 +1,12 @@
+-r requirements.txt
+build
+coverage~=7.5.3
+coveragepy-lcov~=0.1.2
+pre-commit
+pytest~=8.2.1
+pytest-cov~=5.0.0
+pytest-mock~=3.14.0
+setuptools~=70.0.0
+sphinx
+twine
+ujson~=5.10.0
