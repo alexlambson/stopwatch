@@ -17,7 +17,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4.1.7
+        if: inputs.tests
       - uses: piotrpawlaczek/python-blacken@v24.4.2
+        if: inputs.tests
         with:
           line-length: '128'
 #  install:
@@ -69,19 +71,25 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v4.1.7
+        if: inputs.tests
       - uses: actions/setup-python@v5.1.0
+        if: inputs.tests
         with:
           python-version: ${{ matrix.python-version }}
       - name: upgrade pip
+        if: inputs.tests
         run: |
           python -m pip install --upgrade pip
       - name: run pip
+        if: inputs.tests
         run: |
           pip install -r requirements-dev.txt
       - name: run pytest --cov
+        if: inputs.tests
         run: |
           pytest --cov=./ --cov-report=html
       - uses: actions/upload-artifact@v4.3.3
+        if: inputs.tests
         with:
           name: coverage_${{ matrix.python-version }}
           if-no-files-found: error
