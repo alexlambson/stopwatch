@@ -1,0 +1,31 @@
+src.exceptions
+==============
+
+.. py:module:: src.exceptions
+
+
+
+
+Module Contents
+---------------
+
+.. py:exception:: ProgrammerError
+
+   Bases: :py:obj:`Exception`
+
+
+   Raised when a programmer did something that is not allowed.
+
+   Initialize self.  See help(type(self)) for accurate signature.
+
+
+.. py:exception:: SkillIssue
+
+   Bases: :py:obj:`ProgrammerError`
+
+
+   Raised when a programmer did something that is not allowed.
+
+   Initialize self.  See help(type(self)) for accurate signature.
+
+

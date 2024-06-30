@@ -1,0 +1,233 @@
+src
+===
+
+.. py:module:: src
+
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 1
+
+   /autoapi/src/exceptions/index
+   /autoapi/src/stop_watch/index
+
+
+
+
+Package Contents
+----------------
+
+.. py:class:: StopWatch(*, start_time = None, time_func = time.time)
+
+   A class to time your code with.
+
+   Supports "laps" to give more granular timing. A lap is just a named point in time that means something to you.
+   Laps are created by calling :func:`stop_watch.StopWatch.lap`.
+
+   Initialize a stopwatch timer and start the timer.
+
+   :param start_time:
+       If set, this will be the time that the timer starts at instead of ``.time()``.
+   :param time_func:
+       Dependency injection. Must be a function that returns a float.
+       Defaults to the Python ``time.time`` function.
+       Is only called if ``start_time`` is ``None``.
+
+
+   .. py:attribute:: _start_time
+      :type:  Optional[float]
+      :value: None
+
+
+
+   .. py:attribute:: _stop_time
+      :type:  Optional[float]
+      :value: None
+
+
+
+   .. py:attribute:: _time
+      :type:  Callable[[], float]
+
+
+   .. py:attribute:: _laps
+      :type:  List[Lap]
+
+
+   .. py:property:: stopped
+      :type: bool
+
+      Timer stopped property
+
+      Returns true if the timer has been stopped with :func:`~src.stop_watch.StopWatch.stop`
+
+
+
+   .. py:property:: running
+      :type: bool
+
+      Returns True if the timer hasn't been stopped yet.
+
+
+
+   .. py:property:: start_time
+      :type: float
+
+      Returns the float time that this timer was started at.
+
+
+
+   .. py:property:: stop_time
+      :type: float
+
+      Returns the float time that this timer was stopped at.
+
+
+
+   .. py:property:: laps
+      :type: List[Lap]
+
+      Returns the list of named laps.
+
+
+
+   .. py:property:: total
+      :type: Optional[float]
+
+      Returns the total time of the timer if the timer has been stopped.
+
+      Returns ``None`` if the timer is still running.
+
+
+
+   .. py:method:: stop()
+
+      Stops the timer if it is running.
+
+      If the timer is already stopped then we create a lap at the attempted stop time, then return ``False``.
+      If you stop and already stopped timer, then you should consider this a bug in your code and try to fix it.
+
+      :return:
+          True if the timer was running and has been stopped.
+          False if the timer was already stopped prior to this call.
+
+
+
+   .. py:method:: lap(name)
+
+      Record the current time as a named lap.
+
+      Laps **can** be called after the timer has already been stopped.
+      This behavior was intentional to help diagnose race conditions even if you've stopped the timer.
+      Laps are **not** included in :attr:`~stop_watch.StopWatch.total` and exist purely for tracing your code.
+
+      I did consider the idea of not allowing laps on stopped timers, but that'd either require an error,
+      failing silently, or returning a bool that would need to be checked. All of these would be annoying to deal
+      with for a simple timer.
+
+      :param name:
+          Any string that will be useful to you and your logging.
+      :return:
+          The :class:`~src.stop_watch.Lap` created by this call.
+          Use :attr:`~src.stop_watch.StopWatch.laps` to see all laps.
+
+
+
+   .. py:method:: as_dict()
+
+      Return the dictionary representation of a timer.
+
+      Mostly useful for logging.
+
+      :return:
+          A typed dictionary representing this timer.
+
+
+
+   .. py:method:: __json__()
+
+      Add support for ``ujson.dumps`` being called on this class.
+
+      ``ujson`` will automatically detect and call ``__json__`` in ``ujson.dumps``.
+
+      Regular ``json`` and ``orjson`` do not support checking for a ``__json__`` method.
+      You'll need to use ``json.dumps(timer.as_dict())`` for those JSON libraries.
+
+      This function will still work when called without ``ujson`` installed, but you should instead just call
+      ``json.dumps(timer.as_dict())`` or ``str(timer)``. I wouldn't recommend calling this method directly.
+
+
+
+   .. py:method:: __str__()
+
+      Converts self to a string.
+
+
+
+.. py:class:: StopWatchDict
+
+   Bases: :py:obj:`TypedDict`
+
+
+   A typed dictionary for logging.
+
+   Will be returned by :func:`stop_watch.StopWatch.as_dict` and gets serialized when calling
+   ``ujson.dumps()`` on a :class:`~stop_watch.StopWatch`.
+
+   Initialize self.  See help(type(self)) for accurate signature.
+
+
+   .. py:attribute:: start_time
+      :type:  float
+
+      float: The time that the stopwatch was created.
+
+
+
+   .. py:attribute:: stop_time
+      :type:  Optional[float]
+
+      t.Optional[float]: The time that the stopwatch was stopped with :func:`stop_watch.StopWatch.stop`
+
+
+
+   .. py:attribute:: laps
+      :type:  List[Lap]
+
+      t.List[Lap]: The list of named laps in the order that they were created.
+
+
+
+   .. py:attribute:: total_time
+      :type:  Optional[float]
+
+      t.Optional[float]: The total time between creating the stopwatch and calling :func:`stop_watch.StopWatch.stop`
+
+
+
+.. py:class:: Lap
+
+   Bases: :py:obj:`TypedDict`
+
+
+   A named lap for more granular timing.
+
+   Initialize self.  See help(type(self)) for accurate signature.
+
+
+   .. py:attribute:: lap_name
+      :type:  str
+
+      str: Any string that means something to you. e.g. "my_function_begin".
+
+
+
+   .. py:attribute:: lap_time_stamp
+      :type:  float
+
+      float: The time that the named lap was called.
+
+
+

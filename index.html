@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Python Stopwatch &mdash; Stopwatch 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=fd3f3429" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=8d563738"></script>
+        <script src="_static/doctools.js?v=9a2dae69"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Installation" href="install.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="#" class="icon icon-home">
+            Stopwatch
+          </a>
+              <div class="version">
+                1.0.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="support.html">Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="autoapi/index.html">API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">Stopwatch</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Python Stopwatch</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="python-stopwatch">
+<h1>Python Stopwatch<a class="headerlink" href="#python-stopwatch" title="Link to this heading"></a></h1>
+<p>A helper to time your code in a granular way without a ton of bloat.</p>
+<p>Useful for people who don’t have a metrics service, but do have some form of logging.</p>
+<p>Github project: https://github.com/alexlambson/stopwatch/</p>
+<p>The main class that a user will be interested in is <a class="reference internal" href="autoapi/src/stop_watch/index.html#src.stop_watch.StopWatch" title="src.stop_watch.StopWatch"><code class="xref py py-class docutils literal notranslate"><span class="pre">src.stop_watch.StopWatch</span></code></a></p>
+</section>
+<section id="usage">
+<h1>Usage<a class="headerlink" href="#usage" title="Link to this heading"></a></h1>
+<p>Consider the manual way of timing:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+
+<span class="k">def</span> <span class="nf">do_second_thing</span><span class="p">(</span><span class="n">timer</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
+    <span class="n">stuff</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Stuff took: </span><span class="si">{</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">timer</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">more_stuff</span><span class="p">()</span>
+    <span class="k">return</span>
+
+<span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="n">do_something</span><span class="p">()</span>
+<span class="n">do_another_thing</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Doing two things took: </span><span class="si">{</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">start</span><span class="si">}</span><span class="s2"> seconds&quot;</span><span class="p">)</span>
+
+<span class="n">start2</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="n">do_second_thing</span><span class="p">(</span><span class="n">start2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Doing second thing set took: </span><span class="si">{</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">start2</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total time: </span><span class="si">{</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">start</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Now with stop watch</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">stopwatch</span>
+
+<span class="k">def</span> <span class="nf">do_second_thing</span><span class="p">(</span><span class="n">timer</span><span class="p">:</span> <span class="n">StopWatch</span><span class="p">):</span>
+    <span class="n">stuff</span><span class="p">()</span>
+    <span class="n">timer</span><span class="o">.</span><span class="n">lap</span><span class="p">(</span><span class="s2">&quot;do_second_thing.stuff_took&quot;</span><span class="p">)</span>
+    <span class="n">more_stuff</span><span class="p">()</span>
+    <span class="k">return</span>
+
+<span class="n">timer</span> <span class="o">=</span> <span class="n">stopwatch</span><span class="o">.</span><span class="n">StopWatch</span><span class="p">()</span>
+<span class="n">do_something</span><span class="p">()</span>
+<span class="n">do_another_thing</span><span class="p">()</span>
+<span class="n">timer</span><span class="o">.</span><span class="n">lap</span><span class="p">(</span><span class="s2">&quot;Doing two things&quot;</span><span class="p">)</span>
+
+<span class="n">do_second_thing</span><span class="p">()</span>
+<span class="n">timer</span><span class="o">.</span><span class="n">lap</span><span class="p">(</span><span class="s2">&quot;second_thing&quot;</span><span class="p">)</span>
+<span class="c1"># timer.stop() can be called manually, but will also be called inside __str__</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">timer</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="table-of-contents">
+<h1>Table Of Contents<a class="headerlink" href="#table-of-contents" title="Link to this heading"></a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="support.html">Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="autoapi/index.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="autoapi/src/index.html">src</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/src/index.html#submodules">Submodules</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/src/exceptions/index.html">src.exceptions</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="autoapi/src/exceptions/index.html#module-contents">Module Contents</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="autoapi/src/exceptions/index.html#src.exceptions.ProgrammerError"><code class="docutils literal notranslate"><span class="pre">ProgrammerError</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="autoapi/src/exceptions/index.html#src.exceptions.SkillIssue"><code class="docutils literal notranslate"><span class="pre">SkillIssue</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/src/stop_watch/index.html">src.stop_watch</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="autoapi/src/stop_watch/index.html#module-contents">Module Contents</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="autoapi/src/stop_watch/index.html#src.stop_watch.TimeCompatibleCallable"><code class="docutils literal notranslate"><span class="pre">TimeCompatibleCallable</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="autoapi/src/stop_watch/index.html#src.stop_watch.Lap"><code class="docutils literal notranslate"><span class="pre">Lap</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="autoapi/src/stop_watch/index.html#src.stop_watch.Lap.lap_name"><code class="docutils literal notranslate"><span class="pre">Lap.lap_name</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="autoapi/src/stop_watch/index.html#src.stop_watch.Lap.lap_time_stamp"><code class="docutils literal notranslate"><span class="pre">Lap.lap_time_stamp</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="autoapi/src/stop_watch/index.html#src.stop_watch.StopWatchDict"><code class="docutils literal notranslate"><span class="pre">StopWatchDict</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="autoapi/src/stop_watch/index.html#src.stop_watch.StopWatchDict.start_time"><code class="docutils literal notranslate"><span class="pre">StopWatchDict.start_time</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="autoapi/src/stop_watch/index.html#src.stop_watch.StopWatchDict.stop_time"><code class="docutils literal notranslate"><span class="pre">StopWatchDict.stop_time</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="autoapi/src/stop_watch/index.html#src.stop_watch.StopWatchDict.laps"><code class="docutils literal notranslate"><span class="pre">StopWatchDict.laps</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="autoapi/src/stop_watch/index.html#src.stop_watch.StopWatchDict.total_time"><code class="docutils literal notranslate"><span class="pre">StopWatchDict.total_time</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="autoapi/src/stop_watch/index.html#src.stop_watch.StopWatch"><code class="docutils literal notranslate"><span class="pre">StopWatch</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="autoapi/src/stop_watch/index.html#src.stop_watch.StopWatch._start_time"><code class="docutils literal notranslate"><span class="pre">StopWatch._start_time</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="autoapi/src/stop_watch/index.html#src.stop_watch.StopWatch._stop_time"><code class="docutils literal notranslate"><span class="pre">StopWatch._stop_time</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="autoapi/src/stop_watch/index.html#src.stop_watch.StopWatch._time"><code class="docutils literal notranslate"><span class="pre">StopWatch._time</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="autoapi/src/stop_watch/index.html#src.stop_watch.StopWatch._laps"><code class="docutils literal notranslate"><span class="pre">StopWatch._laps</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="autoapi/src/stop_watch/index.html#src.stop_watch.StopWatch.stopped"><code class="docutils literal notranslate"><span class="pre">StopWatch.stopped</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="autoapi/src/stop_watch/index.html#src.stop_watch.StopWatch.running"><code class="docutils literal notranslate"><span class="pre">StopWatch.running</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="autoapi/src/stop_watch/index.html#src.stop_watch.StopWatch.start_time"><code class="docutils literal notranslate"><span class="pre">StopWatch.start_time</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="autoapi/src/stop_watch/index.html#src.stop_watch.StopWatch.stop_time"><code class="docutils literal notranslate"><span class="pre">StopWatch.stop_time</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="autoapi/src/stop_watch/index.html#src.stop_watch.StopWatch.laps"><code class="docutils literal notranslate"><span class="pre">StopWatch.laps</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="autoapi/src/stop_watch/index.html#src.stop_watch.StopWatch.total"><code class="docutils literal notranslate"><span class="pre">StopWatch.total</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="autoapi/src/stop_watch/index.html#src.stop_watch.StopWatch.stop"><code class="docutils literal notranslate"><span class="pre">StopWatch.stop()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="autoapi/src/stop_watch/index.html#src.stop_watch.StopWatch.lap"><code class="docutils literal notranslate"><span class="pre">StopWatch.lap()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="autoapi/src/stop_watch/index.html#src.stop_watch.StopWatch.as_dict"><code class="docutils literal notranslate"><span class="pre">StopWatch.as_dict()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="autoapi/src/stop_watch/index.html#src.stop_watch.StopWatch.__json__"><code class="docutils literal notranslate"><span class="pre">StopWatch.__json__()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="autoapi/src/stop_watch/index.html#src.stop_watch.StopWatch.__str__"><code class="docutils literal notranslate"><span class="pre">StopWatch.__str__()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/src/index.html#package-contents">Package Contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/src/index.html#src.StopWatch"><code class="docutils literal notranslate"><span class="pre">StopWatch</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="autoapi/src/index.html#src.StopWatch._start_time"><code class="docutils literal notranslate"><span class="pre">StopWatch._start_time</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="autoapi/src/index.html#src.StopWatch._stop_time"><code class="docutils literal notranslate"><span class="pre">StopWatch._stop_time</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="autoapi/src/index.html#src.StopWatch._time"><code class="docutils literal notranslate"><span class="pre">StopWatch._time</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="autoapi/src/index.html#src.StopWatch._laps"><code class="docutils literal notranslate"><span class="pre">StopWatch._laps</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="autoapi/src/index.html#src.StopWatch.stopped"><code class="docutils literal notranslate"><span class="pre">StopWatch.stopped</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="autoapi/src/index.html#src.StopWatch.running"><code class="docutils literal notranslate"><span class="pre">StopWatch.running</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="autoapi/src/index.html#src.StopWatch.start_time"><code class="docutils literal notranslate"><span class="pre">StopWatch.start_time</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="autoapi/src/index.html#src.StopWatch.stop_time"><code class="docutils literal notranslate"><span class="pre">StopWatch.stop_time</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="autoapi/src/index.html#src.StopWatch.laps"><code class="docutils literal notranslate"><span class="pre">StopWatch.laps</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="autoapi/src/index.html#src.StopWatch.total"><code class="docutils literal notranslate"><span class="pre">StopWatch.total</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="autoapi/src/index.html#src.StopWatch.stop"><code class="docutils literal notranslate"><span class="pre">StopWatch.stop()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="autoapi/src/index.html#src.StopWatch.lap"><code class="docutils literal notranslate"><span class="pre">StopWatch.lap()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="autoapi/src/index.html#src.StopWatch.as_dict"><code class="docutils literal notranslate"><span class="pre">StopWatch.as_dict()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="autoapi/src/index.html#src.StopWatch.__json__"><code class="docutils literal notranslate"><span class="pre">StopWatch.__json__()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="autoapi/src/index.html#src.StopWatch.__str__"><code class="docutils literal notranslate"><span class="pre">StopWatch.__str__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/src/index.html#src.StopWatchDict"><code class="docutils literal notranslate"><span class="pre">StopWatchDict</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="autoapi/src/index.html#src.StopWatchDict.start_time"><code class="docutils literal notranslate"><span class="pre">StopWatchDict.start_time</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="autoapi/src/index.html#src.StopWatchDict.stop_time"><code class="docutils literal notranslate"><span class="pre">StopWatchDict.stop_time</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="autoapi/src/index.html#src.StopWatchDict.laps"><code class="docutils literal notranslate"><span class="pre">StopWatchDict.laps</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="autoapi/src/index.html#src.StopWatchDict.total_time"><code class="docutils literal notranslate"><span class="pre">StopWatchDict.total_time</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/src/index.html#src.Lap"><code class="docutils literal notranslate"><span class="pre">Lap</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="autoapi/src/index.html#src.Lap.lap_name"><code class="docutils literal notranslate"><span class="pre">Lap.lap_name</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="autoapi/src/index.html#src.Lap.lap_time_stamp"><code class="docutils literal notranslate"><span class="pre">Lap.lap_time_stamp</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="install.html" class="btn btn-neutral float-right" title="Installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Alex Lambson.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

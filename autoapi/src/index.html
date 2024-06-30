@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>src &mdash; Stopwatch 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=fd3f3429" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=8d563738"></script>
+        <script src="../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="src.exceptions" href="exceptions/index.html" />
+    <link rel="prev" title="API Reference" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Stopwatch
+          </a>
+              <div class="version">
+                1.0.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../support.html">Support</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">API Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">src</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Stopwatch</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">API Reference</a></li>
+      <li class="breadcrumb-item active">src</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/autoapi/src/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-src">
+<span id="src"></span><h1>src<a class="headerlink" href="#module-src" title="Link to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="exceptions/index.html">src.exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stop_watch/index.html">src.stop_watch</a></li>
+</ul>
+</div>
+</section>
+<section id="package-contents">
+<h2>Package Contents<a class="headerlink" href="#package-contents" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="src.StopWatch">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.</span></span><span class="sig-name descname"><span class="pre">StopWatch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_func</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">time.time</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.StopWatch" title="Link to this definition"></a></dt>
+<dd><p>A class to time your code with.</p>
+<p>Supports “laps” to give more granular timing. A lap is just a named point in time that means something to you.
+Laps are created by calling <a class="reference internal" href="stop_watch/index.html#src.stop_watch.StopWatch.lap" title="src.stop_watch.StopWatch.lap"><code class="xref py py-func docutils literal notranslate"><span class="pre">stop_watch.StopWatch.lap()</span></code></a>.</p>
+<p>Initialize a stopwatch timer and start the timer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>start_time</strong> (<em>Optional</em><em>[</em><em>float</em><em>]</em>) – If set, this will be the time that the timer starts at instead of <code class="docutils literal notranslate"><span class="pre">.time()</span></code>.</p></li>
+<li><p><strong>time_func</strong> (<em>TimeCompatibleCallable</em>) – Dependency injection. Must be a function that returns a float.
+Defaults to the Python <code class="docutils literal notranslate"><span class="pre">time.time</span></code> function.
+Is only called if <code class="docutils literal notranslate"><span class="pre">start_time</span></code> is <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.StopWatch._start_time">
+<span class="sig-name descname"><span class="pre">_start_time</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#src.StopWatch._start_time" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.StopWatch._stop_time">
+<span class="sig-name descname"><span class="pre">_stop_time</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#src.StopWatch._stop_time" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.StopWatch._time">
+<span class="sig-name descname"><span class="pre">_time</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#src.StopWatch._time" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.StopWatch._laps">
+<span class="sig-name descname"><span class="pre">_laps</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#src.Lap" title="src.Lap"><span class="pre">Lap</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#src.StopWatch._laps" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="src.StopWatch.stopped">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">stopped</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#src.StopWatch.stopped" title="Link to this definition"></a></dt>
+<dd><p>Timer stopped property</p>
+<p>Returns true if the timer has been stopped with <a class="reference internal" href="stop_watch/index.html#src.stop_watch.StopWatch.stop" title="src.stop_watch.StopWatch.stop"><code class="xref py py-func docutils literal notranslate"><span class="pre">stop()</span></code></a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="src.StopWatch.running">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">running</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#src.StopWatch.running" title="Link to this definition"></a></dt>
+<dd><p>Returns True if the timer hasn’t been stopped yet.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="src.StopWatch.start_time">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">start_time</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#src.StopWatch.start_time" title="Link to this definition"></a></dt>
+<dd><p>Returns the float time that this timer was started at.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="src.StopWatch.stop_time">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">stop_time</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#src.StopWatch.stop_time" title="Link to this definition"></a></dt>
+<dd><p>Returns the float time that this timer was stopped at.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="src.StopWatch.laps">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">laps</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#src.Lap" title="src.Lap"><span class="pre">Lap</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#src.StopWatch.laps" title="Link to this definition"></a></dt>
+<dd><p>Returns the list of named laps.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[<a class="reference internal" href="#src.Lap" title="src.Lap">Lap</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="src.StopWatch.total">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">total</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#src.StopWatch.total" title="Link to this definition"></a></dt>
+<dd><p>Returns the total time of the timer if the timer has been stopped.</p>
+<p>Returns <code class="docutils literal notranslate"><span class="pre">None</span></code> if the timer is still running.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Optional[float]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.StopWatch.stop">
+<span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.StopWatch.stop" title="Link to this definition"></a></dt>
+<dd><p>Stops the timer if it is running.</p>
+<p>If the timer is already stopped then we create a lap at the attempted stop time, then return <code class="docutils literal notranslate"><span class="pre">False</span></code>.
+If you stop and already stopped timer, then you should consider this a bug in your code and try to fix it.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>True if the timer was running and has been stopped.
+False if the timer was already stopped prior to this call.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.StopWatch.lap">
+<span class="sig-name descname"><span class="pre">lap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.StopWatch.lap" title="Link to this definition"></a></dt>
+<dd><p>Record the current time as a named lap.</p>
+<p>Laps <strong>can</strong> be called after the timer has already been stopped.
+This behavior was intentional to help diagnose race conditions even if you’ve stopped the timer.
+Laps are <strong>not</strong> included in <a class="reference internal" href="stop_watch/index.html#src.stop_watch.StopWatch.total" title="src.stop_watch.StopWatch.total"><code class="xref py py-attr docutils literal notranslate"><span class="pre">total</span></code></a> and exist purely for tracing your code.</p>
+<p>I did consider the idea of not allowing laps on stopped timers, but that’d either require an error,
+failing silently, or returning a bool that would need to be checked. All of these would be annoying to deal
+with for a simple timer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> (<em>str</em>) – Any string that will be useful to you and your logging.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The <a class="reference internal" href="stop_watch/index.html#src.stop_watch.Lap" title="src.stop_watch.Lap"><code class="xref py py-class docutils literal notranslate"><span class="pre">Lap</span></code></a> created by this call.
+Use <a class="reference internal" href="stop_watch/index.html#src.stop_watch.StopWatch.laps" title="src.stop_watch.StopWatch.laps"><code class="xref py py-attr docutils literal notranslate"><span class="pre">laps</span></code></a> to see all laps.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#src.Lap" title="src.Lap">Lap</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.StopWatch.as_dict">
+<span class="sig-name descname"><span class="pre">as_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.StopWatch.as_dict" title="Link to this definition"></a></dt>
+<dd><p>Return the dictionary representation of a timer.</p>
+<p>Mostly useful for logging.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A typed dictionary representing this timer.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#src.StopWatchDict" title="src.StopWatchDict">StopWatchDict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.StopWatch.__json__">
+<span class="sig-name descname"><span class="pre">__json__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.StopWatch.__json__" title="Link to this definition"></a></dt>
+<dd><p>Add support for <code class="docutils literal notranslate"><span class="pre">ujson.dumps</span></code> being called on this class.</p>
+<p><code class="docutils literal notranslate"><span class="pre">ujson</span></code> will automatically detect and call <code class="docutils literal notranslate"><span class="pre">__json__</span></code> in <code class="docutils literal notranslate"><span class="pre">ujson.dumps</span></code>.</p>
+<p>Regular <code class="docutils literal notranslate"><span class="pre">json</span></code> and <code class="docutils literal notranslate"><span class="pre">orjson</span></code> do not support checking for a <code class="docutils literal notranslate"><span class="pre">__json__</span></code> method.
+You’ll need to use <code class="docutils literal notranslate"><span class="pre">json.dumps(timer.as_dict())</span></code> for those JSON libraries.</p>
+<p>This function will still work when called without <code class="docutils literal notranslate"><span class="pre">ujson</span></code> installed, but you should instead just call
+<code class="docutils literal notranslate"><span class="pre">json.dumps(timer.as_dict())</span></code> or <code class="docutils literal notranslate"><span class="pre">str(timer)</span></code>. I wouldn’t recommend calling this method directly.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.StopWatch.__str__">
+<span class="sig-name descname"><span class="pre">__str__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.StopWatch.__str__" title="Link to this definition"></a></dt>
+<dd><p>Converts self to a string.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="src.StopWatchDict">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.</span></span><span class="sig-name descname"><span class="pre">StopWatchDict</span></span><a class="headerlink" href="#src.StopWatchDict" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">TypedDict</span></code></p>
+<p>A typed dictionary for logging.</p>
+<p>Will be returned by <a class="reference internal" href="stop_watch/index.html#src.stop_watch.StopWatch.as_dict" title="src.stop_watch.StopWatch.as_dict"><code class="xref py py-func docutils literal notranslate"><span class="pre">stop_watch.StopWatch.as_dict()</span></code></a> and gets serialized when calling
+<code class="docutils literal notranslate"><span class="pre">ujson.dumps()</span></code> on a <a class="reference internal" href="stop_watch/index.html#src.stop_watch.StopWatch" title="src.stop_watch.StopWatch"><code class="xref py py-class docutils literal notranslate"><span class="pre">StopWatch</span></code></a>.</p>
+<p>Initialize self.  See help(type(self)) for accurate signature.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.StopWatchDict.start_time">
+<span class="sig-name descname"><span class="pre">start_time</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#src.StopWatchDict.start_time" title="Link to this definition"></a></dt>
+<dd><p>float: The time that the stopwatch was created.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.StopWatchDict.stop_time">
+<span class="sig-name descname"><span class="pre">stop_time</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#src.StopWatchDict.stop_time" title="Link to this definition"></a></dt>
+<dd><p>t.Optional[float]: The time that the stopwatch was stopped with <a class="reference internal" href="stop_watch/index.html#src.stop_watch.StopWatch.stop" title="src.stop_watch.StopWatch.stop"><code class="xref py py-func docutils literal notranslate"><span class="pre">stop_watch.StopWatch.stop()</span></code></a></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.StopWatchDict.laps">
+<span class="sig-name descname"><span class="pre">laps</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#src.Lap" title="src.Lap"><span class="pre">Lap</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#src.StopWatchDict.laps" title="Link to this definition"></a></dt>
+<dd><p>t.List[Lap]: The list of named laps in the order that they were created.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.StopWatchDict.total_time">
+<span class="sig-name descname"><span class="pre">total_time</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#src.StopWatchDict.total_time" title="Link to this definition"></a></dt>
+<dd><p>t.Optional[float]: The total time between creating the stopwatch and calling <a class="reference internal" href="stop_watch/index.html#src.stop_watch.StopWatch.stop" title="src.stop_watch.StopWatch.stop"><code class="xref py py-func docutils literal notranslate"><span class="pre">stop_watch.StopWatch.stop()</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="src.Lap">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.</span></span><span class="sig-name descname"><span class="pre">Lap</span></span><a class="headerlink" href="#src.Lap" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">TypedDict</span></code></p>
+<p>A named lap for more granular timing.</p>
+<p>Initialize self.  See help(type(self)) for accurate signature.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.Lap.lap_name">
+<span class="sig-name descname"><span class="pre">lap_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#src.Lap.lap_name" title="Link to this definition"></a></dt>
+<dd><p>str: Any string that means something to you. e.g. “my_function_begin”.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.Lap.lap_time_stamp">
+<span class="sig-name descname"><span class="pre">lap_time_stamp</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#src.Lap.lap_time_stamp" title="Link to this definition"></a></dt>
+<dd><p>float: The time that the named lap was called.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../index.html" class="btn btn-neutral float-left" title="API Reference" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="exceptions/index.html" class="btn btn-neutral float-right" title="src.exceptions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Alex Lambson.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
