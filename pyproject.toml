@@ -52,3 +52,4 @@ classifiers = [
 [project.urls]
 Homepage = "https://github.com/alexlambson/stopwatch/"
 Issues = "https://github.com/alexlambson/stopwatch/issues"
+Docs = "https://alexlambson.github.io/stopwatch/index.html"
