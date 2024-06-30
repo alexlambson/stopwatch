@@ -6,7 +6,12 @@ on:
         description: Enables/disables docs generation with sphinx
         required: false
         type: boolean
-        default: true
+        default: false
+      tests:
+        description: Toggles running tests
+        required: false
+        type: boolean
+        default: false
 jobs:
   black:
     runs-on: ubuntu-latest
@@ -50,12 +55,13 @@ jobs:
           python -m venv venv
           source ./venv/bin/activate
           make build-docs
+          tar -zcf github-pages.tar.gz ./docs/_build/*
         if: inputs.docs
       - uses: actions/upload-artifact@v4.3.3
         if: inputs.docs
         with:
-          name: docs
-          path: docs/_build/
+          name: github-pages
+          path: github-pages.tar.gz
   pytest:
     strategy:
       matrix:

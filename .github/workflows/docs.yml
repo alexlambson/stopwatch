@@ -1,0 +1,15 @@
+name: Doc Upload
+
+on:
+  push:
+    branches: [ main ]
+
+
+jobs:
+  publish-docs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: ./.github/workflows/python.yml
+        with:
+          docs: true
